@@ -715,7 +715,7 @@ glPopMatrix();
 
 
 //************************************************************************
-// sustentación
+// ruedas
 //************************************************************************
 _rueda_delantera::_rueda_delantera()
 {
@@ -734,7 +734,15 @@ glRotatef(90,1,0,0);
 glScalef(radio, fondo/2.2, radio);
 rueda.draw(modo, 0, 0, 0, grosor);
 glPopMatrix();
+};
 
+_rueda_trasera::_rueda_trasera()
+{
+ancho=0.3;
+alto=0.3;
+fondo=0.25;
+radio=0.15;
+base.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
 };
 
 void _rueda_trasera::draw(_modo modo, float r, float g, float b, float grosor)
@@ -742,7 +750,7 @@ void _rueda_trasera::draw(_modo modo, float r, float g, float b, float grosor)
 //rueda trasera
 glPushMatrix();
 glRotatef(90,1,0,0);
-glScalef(radio*1.2, fondo/2.2, radio*1.2);
+glScalef(radio*1.3, fondo/2.2, radio*1.3);
 rueda.draw(modo, 0, 0, 0, grosor);
 glPopMatrix();
 };
@@ -754,8 +762,10 @@ glPopMatrix();
 
 _coche::_coche()
 {
-giro_ruedas_max_min = 45;
+giro_ruedas = 0;
+giro_ruedas_max_min = 25;
 rotacion_ruedas = 0;
+
 }
 
 
@@ -764,24 +774,28 @@ void _coche::draw(_modo modo, float r, float g, float b, float grosor)
 glPushMatrix();
 glTranslatef(-2*rueda_delantera_izq.ancho,-rueda_delantera_izq.alto/2.0,-0.5);
 glRotatef(rotacion_ruedas, 0, 0, 1);
+glRotatef(giro_ruedas, 0, 1, 0);
 rueda_delantera_izq.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
 glTranslatef(-2*rueda_delantera_der.ancho,-rueda_delantera_der.alto/2.0,0.5);
 glRotatef(rotacion_ruedas, 0, 0, 1);
+glRotatef(giro_ruedas, 0, 1, 0);
 rueda_delantera_der.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(2*rueda_trasera_izq.ancho,-rueda_trasera_izq.alto/2.0,-0.5);
+glTranslatef(2*rueda_trasera_izq.ancho,-(rueda_trasera_izq.alto/2.0)*0.7,-0.5);
 glRotatef(rotacion_ruedas, 0, 0, 1);
-rueda_delantera_izq.draw(modo, r, g, b, grosor);
+glRotatef(giro_ruedas, 0, 1, 0);
+rueda_trasera_izq.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(2*rueda_trasera_der.ancho,-rueda_trasera_der.alto/2.0,0.5);
+glTranslatef(2*rueda_trasera_der.ancho,-(rueda_trasera_der.alto/2.0)*0.7,0.5);
 glRotatef(rotacion_ruedas, 0, 0, 1);
-rueda_delantera_der.draw(modo, r, g, b, grosor);
+glRotatef(giro_ruedas, 0, 1, 0);
+rueda_trasera_der.draw(modo, r, g, b, grosor);
 glPopMatrix();
 };

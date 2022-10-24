@@ -220,14 +220,28 @@ switch (Tecla1){
    case GLUT_KEY_PAGE_UP:Observer_distance*=1.2;break;
    case GLUT_KEY_PAGE_DOWN:Observer_distance/=1.2;break;
 	
-   case GLUT_KEY_F1:excavadora.giro_cabina+=5,coche.rotacion_ruedas+=5;break;
-   case GLUT_KEY_F2:excavadora.giro_cabina-=5,coche.rotacion_ruedas-=5;break;
+   case GLUT_KEY_F1:excavadora.giro_cabina+=5;
+        if (coche.giro_ruedas==0)
+            coche.rotacion_ruedas+=5;break;
+   case GLUT_KEY_F2:excavadora.giro_cabina-=5;
+    if (coche.giro_ruedas==0)
+        coche.rotacion_ruedas-=5;break;
    case GLUT_KEY_F3:excavadora.giro_primer_brazo+=1;
         if (excavadora.giro_primer_brazo > excavadora.giro_primer_brazo_max)
-            excavadora.giro_primer_brazo = excavadora.giro_primer_brazo_max;break;
+            excavadora.giro_primer_brazo = excavadora.giro_primer_brazo_max;
+        if (coche.rotacion_ruedas==0) {
+            coche.giro_ruedas+=1;
+            if (coche.giro_ruedas > coche.giro_ruedas_max_min)
+                coche.giro_ruedas = coche.giro_ruedas_max_min;break;
+        }
    case GLUT_KEY_F4:excavadora.giro_primer_brazo-=1;
         if (excavadora.giro_primer_brazo < excavadora.giro_primer_brazo_min)
-            excavadora.giro_primer_brazo = excavadora.giro_primer_brazo_min;break;
+            excavadora.giro_primer_brazo = excavadora.giro_primer_brazo_min;
+        if (coche.rotacion_ruedas==0) {
+            coche.giro_ruedas-=1;
+            if (coche.giro_ruedas < -coche.giro_ruedas_max_min)
+                coche.giro_ruedas = -coche.giro_ruedas_max_min;break;
+        }
    case GLUT_KEY_F5:excavadora.giro_segundo_brazo+=1;
         if (excavadora.giro_segundo_brazo > excavadora.giro_segundo_brazo_max)
             excavadora.giro_segundo_brazo = excavadora.giro_segundo_brazo_max;break;

@@ -318,6 +318,7 @@ public:
        
 void  draw(_modo modo, float r, float g, float b, float grosor);
 
+float giro_ruedas;
 float giro_ruedas_max_min;
 float rotacion_ruedas;
 
