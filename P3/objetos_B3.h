@@ -286,7 +286,6 @@ float radio;
 
 protected:
 _cilindro rueda;
-_cubo base;
 };
 
 class _rueda_trasera: public _triangulos3D
@@ -303,7 +302,51 @@ float radio;
 
 protected:
 _cilindro rueda;
+};
+
+class _volante: public _triangulos3D
+{
+public:
+       _volante();
+void draw(_modo modo, float r, float g, float b, float grosor);
+
+float ancho;
+float alto;
+float fondo;
+
+float radio;
+
+protected:
+_cilindro rueda;
 _cubo base;
+};
+
+class _estructura: public _triangulos3D
+{
+public:
+       _estructura();
+void draw(_modo modo, float r, float g, float b, float grosor);
+
+float ancho;
+float alto;
+float fondo;
+
+protected:
+_cubo cubo;
+};
+
+class _aleron_trasero_base: public _triangulos3D
+{
+public:
+       _aleron_trasero_base();
+void draw(_modo modo, float r, float g, float b, float grosor);
+
+float ancho;
+float alto;
+float fondo;
+
+protected:
+_cubo cubo;
 };
 
 
@@ -327,4 +370,7 @@ _rueda_delantera rueda_delantera_der;
 _rueda_delantera rueda_delantera_izq;
 _rueda_trasera rueda_trasera_der;
 _rueda_trasera rueda_trasera_izq;
+_estructura estructura;
+_aleron_trasero_base aleron_trasero_base_izq;
+_aleron_trasero_base aleron_trasero_base_drch;
 };

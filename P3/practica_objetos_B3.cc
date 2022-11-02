@@ -195,7 +195,7 @@ switch (toupper(Tecla1)){
         case 'A':t_objeto=EXCAVADORA;break;
         case 'X':t_objeto=EXTRUSION;break;
         case 'M':t_objeto=COCHE;break;
-	}
+}
 glutPostRedisplay();
 }
 
@@ -229,15 +229,13 @@ switch (Tecla1){
    case GLUT_KEY_F3:excavadora.giro_primer_brazo+=1;
         if (excavadora.giro_primer_brazo > excavadora.giro_primer_brazo_max)
             excavadora.giro_primer_brazo = excavadora.giro_primer_brazo_max;
-        if (coche.rotacion_ruedas!=0)
-            coche.rotacion_ruedas=0;
+        coche.rotacion_ruedas=0;
         coche.giro_ruedas+=1;
         if (coche.giro_ruedas > coche.giro_ruedas_max_min)
             coche.giro_ruedas = coche.giro_ruedas_max_min;break;
    case GLUT_KEY_F4:excavadora.giro_primer_brazo-=1;
         if (excavadora.giro_primer_brazo < excavadora.giro_primer_brazo_min)
             excavadora.giro_primer_brazo = excavadora.giro_primer_brazo_min;
-        if (coche.rotacion_ruedas!=0)
         coche.rotacion_ruedas=0;
         coche.giro_ruedas-=1;
         if (coche.giro_ruedas < -coche.giro_ruedas_max_min)
@@ -298,7 +296,6 @@ glViewport(0,0,Window_width,Window_high);
 
 int main(int argc, char *argv[] )
 {
- 
 // perfil 
 
 vector<_vertex3f> perfil, poligono;
@@ -367,6 +364,35 @@ initialize();
 
 // creación del objeto ply
 ply.parametros(argv[1]);
+
+// mensaje de salida en el terminal para orientar al usuario
+cout << endl << endl;
+cout << "***Objetos que se pueden visualizar***" << endl;
+cout << "Tecla P: Pirámide" << endl;
+cout << "Tecla C: Cubo" << endl;
+cout << "Tecla O: Objeto Ply" << endl;
+cout << "Tecla R: Rotación" << endl;
+cout << "Tecla L: Cilindro" << endl;
+cout << "Tecla N: Cono" << endl;
+cout << "Tecla E: Esfera" << endl;
+cout << "Tecla A: Excavadora" << endl;
+cout << "Tecla X: Extrusión" << endl;
+cout << "Tecla M: Coche" << endl;
+
+cout << endl << endl;
+cout << "***Modos de visualización de los distintos objetos***" << endl;
+cout << "Número 1: Puntos" << endl;
+cout << "Número 2: Líneas" << endl;
+cout << "Número 3: Sólido" << endl;
+cout << "Número 4: Sólido colores" << endl;
+
+cout << endl << endl;
+cout << "***Movimientos que puede hacer el coche***" << endl;
+cout << "Tecla F1: Rotación de las ruedas del coche hacia adelante" << endl;
+cout << "Tecla F2: Rotación de las ruedas del coche hacia atrás" << endl;
+cout << "Tecla F3: Giro de las ruedas del coche a la izquierda" << endl;
+cout << "Tecla F4: Giro de las ruedas del coche a la derecha" << endl;
+    
 
 //ply = new _objeto_ply(argv[1]);
 

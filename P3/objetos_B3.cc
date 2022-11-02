@@ -723,7 +723,6 @@ ancho=0.3;
 alto=0.3;
 fondo=0.25;
 radio=0.15;
-base.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
 };
 
 void _rueda_delantera::draw(_modo modo, float r, float g, float b, float grosor)
@@ -742,7 +741,6 @@ ancho=0.3;
 alto=0.3;
 fondo=0.25;
 radio=0.15;
-base.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
 };
 
 void _rueda_trasera::draw(_modo modo, float r, float g, float b, float grosor)
@@ -752,6 +750,38 @@ glPushMatrix();
 glRotatef(90,1,0,0);
 glScalef(radio*1.3, fondo/2.2, radio*1.3);
 rueda.draw(modo, 0, 0, 0, grosor);
+glPopMatrix();
+};
+
+_estructura::_estructura()
+{
+ancho=1.45;
+alto=0.3;
+fondo=0.78;
+cubo.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
+};
+
+void _estructura::draw(_modo modo, float r, float g, float b, float grosor)
+{
+glPushMatrix();
+glScalef(ancho, alto, fondo);
+cubo.draw(modo, r, g, b, grosor);
+glPopMatrix();
+};
+
+_aleron_trasero_base::_aleron_trasero_base()
+{
+ancho=0.45;
+alto=0.03;
+fondo=0.25;
+cubo.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
+};
+
+void _aleron_trasero_base::draw(_modo modo, float r, float g, float b, float grosor)
+{
+glPushMatrix();
+glScalef(ancho, alto, fondo);
+cubo.draw(modo, 0, 0, 255, grosor);
 glPopMatrix();
 };
 
@@ -795,5 +825,25 @@ glPushMatrix();
 glTranslatef(2*rueda_trasera_der.ancho,-(rueda_trasera_der.alto/2.0)*0.7,0.5);
 glRotatef(rotacion_ruedas, 0, 0, 1);
 rueda_trasera_der.draw(modo, r, g, b, grosor);
+glPopMatrix();
+
+
+glPushMatrix();
+glTranslatef(0.03, -0.08, 0);
+estructura.draw(modo, r, g, b, grosor);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(estructura.ancho/2 - aleron_trasero_base_izq.ancho/4, estructura.alto + aleron_trasero_base_izq.alto/2, -estructura.fondo/2+aleron_trasero_base_izq.fondo/4);
+glRotatef(90, 0, 0, 1);
+glRotatef(90, 1, 0, 0);
+aleron_trasero_base_izq.draw(modo, r, g, b, grosor);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(estructura.ancho/2 - aleron_trasero_base_izq.ancho/4, estructura.alto + aleron_trasero_base_izq.alto/2, estructura.fondo/2-aleron_trasero_base_izq.fondo/4);
+glRotatef(90, 0, 0, 1);
+glRotatef(90, 1, 0, 0);
+aleron_trasero_base_izq.draw(modo, r, g, b, grosor);
 glPopMatrix();
 };
