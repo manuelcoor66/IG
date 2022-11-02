@@ -788,14 +788,12 @@ glPopMatrix();
 glPushMatrix();
 glTranslatef(2*rueda_trasera_izq.ancho,-(rueda_trasera_izq.alto/2.0)*0.7,-0.5);
 glRotatef(rotacion_ruedas, 0, 0, 1);
-glRotatef(giro_ruedas, 0, 1, 0);
 rueda_trasera_izq.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
 glTranslatef(2*rueda_trasera_der.ancho,-(rueda_trasera_der.alto/2.0)*0.7,0.5);
 glRotatef(rotacion_ruedas, 0, 0, 1);
-glRotatef(giro_ruedas, 0, 1, 0);
 rueda_trasera_der.draw(modo, r, g, b, grosor);
 glPopMatrix();
 };
