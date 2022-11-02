@@ -7,6 +7,8 @@
 #include "vertex.h"
 #include <stdlib.h>
 
+// Prueba
+
 
 const float AXIS_SIZE=5000;
 typedef enum{POINTS,EDGES,SOLID,SOLID_COLORS} _modo;
