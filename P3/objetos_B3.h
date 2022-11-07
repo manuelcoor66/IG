@@ -351,6 +351,20 @@ protected:
 _cubo cubo;
 };
 
+class _aleron_trasero_sup: public _triangulos3D
+{
+public:
+       _aleron_trasero_sup();
+void draw(_modo modo, float r, float g, float b, float grosor);
+
+float ancho;
+float alto;
+float fondo;
+
+protected:
+_cubo cubo;
+};
+
 
 //************************************************************************
 // coche (montaje del objeto final)
@@ -366,6 +380,9 @@ void  draw(_modo modo, float r, float g, float b, float grosor);
 float giro_ruedas;
 float giro_ruedas_max_min;
 float rotacion_ruedas;
+float giro_aleron;
+float giro_aleron_max;
+float giro_aleron_min;
 
 protected:
 _rueda_delantera rueda_delantera_der;
@@ -375,4 +392,6 @@ _rueda_trasera rueda_trasera_izq;
 _estructura estructura;
 _aleron_trasero_base aleron_trasero_base_izq;
 _aleron_trasero_base aleron_trasero_base_drch;
+_aleron_trasero_sup aleron_trasero_sup_inmovil;
+_aleron_trasero_sup aleron_trasero_sup_movil;
 };

@@ -220,32 +220,24 @@ switch (Tecla1){
    case GLUT_KEY_PAGE_UP:Observer_distance*=1.2;break;
    case GLUT_KEY_PAGE_DOWN:Observer_distance/=1.2;break;
 	
-   case GLUT_KEY_F1:excavadora.giro_cabina+=5;
+   case GLUT_KEY_F1:
         if (coche.giro_ruedas==0)
             coche.rotacion_ruedas+=5;break;
-   case GLUT_KEY_F2:excavadora.giro_cabina-=5;
+   case GLUT_KEY_F2:
     if (coche.giro_ruedas==0)
         coche.rotacion_ruedas-=5;break;
-   case GLUT_KEY_F3:excavadora.giro_primer_brazo+=1;
-        if (excavadora.giro_primer_brazo > excavadora.giro_primer_brazo_max)
-            excavadora.giro_primer_brazo = excavadora.giro_primer_brazo_max;
-        coche.rotacion_ruedas=0;
-        coche.giro_ruedas+=1;
+   case GLUT_KEY_F3:coche.rotacion_ruedas=0; coche.giro_ruedas+=1;
         if (coche.giro_ruedas > coche.giro_ruedas_max_min)
             coche.giro_ruedas = coche.giro_ruedas_max_min;break;
-   case GLUT_KEY_F4:excavadora.giro_primer_brazo-=1;
-        if (excavadora.giro_primer_brazo < excavadora.giro_primer_brazo_min)
-            excavadora.giro_primer_brazo = excavadora.giro_primer_brazo_min;
-        coche.rotacion_ruedas=0;
-        coche.giro_ruedas-=1;
+   case GLUT_KEY_F4:coche.rotacion_ruedas=0; coche.giro_ruedas-=1;
         if (coche.giro_ruedas < -coche.giro_ruedas_max_min)
             coche.giro_ruedas = -coche.giro_ruedas_max_min;break;
-   case GLUT_KEY_F5:excavadora.giro_segundo_brazo+=1;
-        if (excavadora.giro_segundo_brazo > excavadora.giro_segundo_brazo_max)
-            excavadora.giro_segundo_brazo = excavadora.giro_segundo_brazo_max;break;
-   case GLUT_KEY_F6:excavadora.giro_segundo_brazo-=1;
-        if (excavadora.giro_segundo_brazo < excavadora.giro_segundo_brazo_min) 
-            excavadora.giro_segundo_brazo = excavadora.giro_segundo_brazo_min;break;
+   case GLUT_KEY_F5:coche.giro_aleron-=0.5;
+        if(coche.giro_aleron < coche.giro_aleron_max)
+            coche.giro_aleron = coche.giro_aleron_max;break;
+   case GLUT_KEY_F6:coche.giro_aleron+=0.5;
+        if(coche.giro_aleron > coche.giro_aleron_min)
+            coche.giro_aleron = coche.giro_aleron_min;break;
    case GLUT_KEY_F7:excavadora.giro_pala+=1;
         if (excavadora.giro_pala > excavadora.giro_pala_max)
             excavadora.giro_pala = excavadora.giro_pala_max;break;
