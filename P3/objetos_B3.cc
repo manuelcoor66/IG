@@ -755,7 +755,7 @@ glPopMatrix();
 
 _estructura::_estructura()
 {
-ancho=1.15;
+ancho=1.3;
 alto=0.3;
 fondo=0.78;
 cubo.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
@@ -802,18 +802,51 @@ cubo.draw(modo, 0, 255, 0, grosor);
 glPopMatrix();
 };
 
-_prueba::_prueba()
+_apendice::_apendice()
 {
 fondo=0.25;
 radio=0.05;
 };
 
-void _prueba::draw(_modo modo, float r, float g, float b, float grosor)
+void _apendice::draw(_modo modo, float r, float g, float b, float grosor)
 {
 glPushMatrix();
 glRotatef(90,1,0,0);
 glScalef(0.2, 0.2, 0.2);
 aleron.draw(modo, 0, 0, 0, 2);
+glPopMatrix();
+};
+
+_aleron_delantero_base::_aleron_delantero_base()
+{
+ancho=0.25;
+alto=0.03;
+fondo=0.15;
+cubo.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
+};
+
+void _aleron_delantero_base::draw(_modo modo, float r, float g, float b, float grosor)
+{
+glPushMatrix();
+glScalef(ancho, alto, fondo);
+cubo.draw(modo, 0, 0, 255, grosor);
+glPopMatrix();
+};
+
+_aleron_delantero_sup::_aleron_delantero_sup()
+{
+ancho=0.45;
+alto=0.03;
+fondo=0.15;
+cubo.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
+};
+
+void _aleron_delantero_sup::draw(_modo modo, float r, float g, float b, float grosor)
+{
+glPushMatrix();
+glScalef(ancho, alto, fondo);
+glTranslatef(0, 0, -0.5);  
+cubo.draw(modo, 0, 255, 0, grosor);
 glPopMatrix();
 };
 
@@ -862,33 +895,33 @@ rueda_trasera_der.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(0.03, -0.08, 0);
+glTranslatef(0.08, -0.1, 0);
 estructura.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(estructura.ancho/2 - aleron_trasero_base_izq.ancho/4, estructura.alto - aleron_trasero_base_izq.alto/8, -estructura.fondo/2+aleron_trasero_base_izq.fondo/4);
+glTranslatef(estructura.ancho/2 - aleron_trasero_base_izq.ancho/8, estructura.alto - aleron_trasero_base_izq.alto/4 - 0.05, -estructura.fondo/2+aleron_trasero_base_izq.fondo/4);
 glRotatef(90, 0, 0, 1);
 glRotatef(90, 1, 0, 0);
 aleron_trasero_base_izq.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(estructura.ancho/2 - aleron_trasero_base_izq.ancho/4, estructura.alto - aleron_trasero_base_izq.alto/8, estructura.fondo/2-aleron_trasero_base_izq.fondo/4);
+glTranslatef(estructura.ancho/2 - aleron_trasero_base_izq.ancho/8, estructura.alto - aleron_trasero_base_izq.alto/4 - 0.05, estructura.fondo/2-aleron_trasero_base_izq.fondo/4);
 glRotatef(90, 0, 0, 1);
 glRotatef(90, 1, 0, 0);
-aleron_trasero_base_izq.draw(modo, r, g, b, grosor);
+aleron_trasero_base_drch.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(estructura.ancho/2 -aleron_trasero_sup_inmovil.ancho/4 + 0.13, estructura.alto + aleron_trasero_sup_movil.alto, 0);
+glTranslatef(estructura.ancho/2 -aleron_trasero_sup_inmovil.ancho/8 + 0.13, estructura.alto + aleron_trasero_sup_movil.alto - 0.05, 0);
 glRotatef(90, 0, 1, 0);
 glScalef(1.5, 1, 1);
 aleron_trasero_sup_inmovil.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(estructura.ancho/2, estructura.alto + aleron_trasero_sup_movil.alto*4 +0.075, 0);
+glTranslatef(estructura.ancho/2 +0.05, estructura.alto + aleron_trasero_sup_movil.alto*4 +0.025, 0);
 glRotatef(90, 0, 1, 0);
 glRotatef(90, 1, 0, 0);
 glScalef(1.5, 1, -0.6);
@@ -899,7 +932,28 @@ glPopMatrix();
 glPushMatrix();
 glRotatef(-90, 1, 0, 0);
 glRotatef(-90, 0, 1, 0);
-glTranslatef(-0.13, 0, 0.55);
-prueba.draw(modo, r, g, b, grosor);
+glTranslatef(-0.13, 0, 0.57);
+apendice.draw(modo, r, g, b, grosor);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(-estructura.ancho/2 -aleron_delantero_sup.ancho/8 + 0.13 - aleron_delantero_sup.ancho*0.7, -estructura.alto/2, 0);
+glRotatef(90, 0, 1, 0);
+glScalef(2.2, 1, 1);
+aleron_delantero_sup.draw(modo, r, g, b, grosor);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(-estructura.ancho/2 - aleron_trasero_base_izq.ancho + 0.134, -estructura.alto/8, -estructura.fondo/2 - aleron_delantero_sup.fondo*0.85);
+glRotatef(90, 0, 0, 1);
+glRotatef(90, 1, 0, 0);
+aleron_delantero_base_izq.draw(modo, r, g, b, grosor);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(-estructura.ancho/2 - aleron_trasero_base_izq.ancho + 0.134, -estructura.alto/8, estructura.fondo/2 + aleron_delantero_sup.fondo*0.85);
+glRotatef(90, 0, 0, 1);
+glRotatef(90, 1, 0, 0);
+aleron_delantero_base_drch.draw(modo, r, g, b, grosor);
 glPopMatrix();
 };

@@ -365,10 +365,10 @@ protected:
 _cubo cubo;
 };
 
-class _prueba: public _triangulos3D
+class _apendice: public _triangulos3D
 {
 public:
-       _prueba();
+       _apendice();
 void draw(_modo modo, float r, float g, float b, float grosor);
 
 float ancho;
@@ -379,6 +379,34 @@ float radio;
 
 protected:
 _cono aleron;
+};
+
+class _aleron_delantero_base: public _triangulos3D
+{
+public:
+       _aleron_delantero_base();
+void draw(_modo modo, float r, float g, float b, float grosor);
+
+float ancho;
+float alto;
+float fondo;
+
+protected:
+_cubo cubo;
+};
+
+class _aleron_delantero_sup: public _triangulos3D
+{
+public:
+       _aleron_delantero_sup();
+void draw(_modo modo, float r, float g, float b, float grosor);
+
+float ancho;
+float alto;
+float fondo;
+
+protected:
+_cubo cubo;
 };
 
 
@@ -410,5 +438,8 @@ _aleron_trasero_base aleron_trasero_base_izq;
 _aleron_trasero_base aleron_trasero_base_drch;
 _aleron_trasero_sup aleron_trasero_sup_inmovil;
 _aleron_trasero_sup aleron_trasero_sup_movil;
-_prueba prueba;
+_apendice apendice;
+_aleron_delantero_base aleron_delantero_base_izq;
+_aleron_delantero_base aleron_delantero_base_drch;
+_aleron_delantero_sup aleron_delantero_sup;
 };
