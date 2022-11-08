@@ -125,7 +125,7 @@ public:
 class _cono: public _rotacion
 {
 public:
-       _cono(float radio, float altura, int num);
+       _cono(float radio=1.0, float altura=2.0, int num=3);
 };
 
 //************************************************************************
@@ -365,6 +365,22 @@ protected:
 _cubo cubo;
 };
 
+class _prueba: public _triangulos3D
+{
+public:
+       _prueba();
+void draw(_modo modo, float r, float g, float b, float grosor);
+
+float ancho;
+float alto;
+float fondo;
+
+float radio;
+
+protected:
+_cono aleron;
+};
+
 
 //************************************************************************
 // coche (montaje del objeto final)
@@ -394,4 +410,5 @@ _aleron_trasero_base aleron_trasero_base_izq;
 _aleron_trasero_base aleron_trasero_base_drch;
 _aleron_trasero_sup aleron_trasero_sup_inmovil;
 _aleron_trasero_sup aleron_trasero_sup_movil;
+_prueba prueba;
 };

@@ -755,7 +755,7 @@ glPopMatrix();
 
 _estructura::_estructura()
 {
-ancho=1.45;
+ancho=1.15;
 alto=0.3;
 fondo=0.78;
 cubo.colors_chess(1.0,1.0,0.0,0.0,0.0,1.0);
@@ -799,6 +799,21 @@ glPushMatrix();
 glScalef(ancho, alto, fondo);
 glTranslatef(0, 0, -0.5);  
 cubo.draw(modo, 0, 255, 0, grosor);
+glPopMatrix();
+};
+
+_prueba::_prueba()
+{
+fondo=0.25;
+radio=0.05;
+};
+
+void _prueba::draw(_modo modo, float r, float g, float b, float grosor)
+{
+glPushMatrix();
+glRotatef(90,1,0,0);
+glScalef(0.2, 0.2, 0.2);
+aleron.draw(modo, 0, 0, 0, 2);
 glPopMatrix();
 };
 
@@ -881,4 +896,10 @@ glRotatef(giro_aleron, 1, 0, 0);
 aleron_trasero_sup_movil.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
+glPushMatrix();
+glRotatef(-90, 1, 0, 0);
+glRotatef(-90, 0, 1, 0);
+glTranslatef(-0.13, 0, 0.55);
+prueba.draw(modo, r, g, b, grosor);
+glPopMatrix();
 };
