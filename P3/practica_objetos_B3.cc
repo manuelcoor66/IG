@@ -36,7 +36,6 @@ _rotacion rotacion;
 _cilindro cilindro(1,2,6); 
 _cono cono(1,2,6);
 _esfera esfera(1,6,6);
-_excavadora excavadora;
 _extrusion *extrusion;
 _coche coche;
 
@@ -125,7 +124,6 @@ switch (t_objeto){
         case CILINDRO: cilindro.draw(modo,1.0,0.0,0.0,5);break;
         case CONO: cono.draw(modo,1.0,0.0,0.0,5);break;
         case ESFERA: esfera.draw(modo,1.0,0.0,0.0,5);break;
-        case EXCAVADORA: excavadora.draw(modo,1.0,0.0,0.0,5);break;
         case EXTRUSION: extrusion->draw(modo,1.0,0.0,0.0,5);break;
         case COCHE: coche.draw(modo,1.0,0.0,0.0,5);break;
 	}
@@ -192,9 +190,8 @@ switch (toupper(Tecla1)){
         case 'L':t_objeto=CILINDRO;break;
         case 'N':t_objeto=CONO;break;
         case 'E':t_objeto=ESFERA;break;
-        case 'A':t_objeto=EXCAVADORA;break;
+        case 'A':t_objeto=COCHE;break;
         case 'X':t_objeto=EXTRUSION;break;
-        case 'M':t_objeto=COCHE;break;
 }
 glutPostRedisplay();
 }
@@ -232,19 +229,23 @@ switch (Tecla1){
    case GLUT_KEY_F4:coche.rotacion_ruedas=0; coche.giro_ruedas-=1;
         if (coche.giro_ruedas < -coche.giro_ruedas_max_min)
             coche.giro_ruedas = -coche.giro_ruedas_max_min;break;
-   case GLUT_KEY_F5:coche.giro_aleron-=0.5;
-        if(coche.giro_aleron < coche.giro_aleron_max)
-            coche.giro_aleron = coche.giro_aleron_max;break;
-   case GLUT_KEY_F6:coche.giro_aleron+=0.5;
-        if(coche.giro_aleron > coche.giro_aleron_min)
-            coche.giro_aleron = coche.giro_aleron_min;break;
-   case GLUT_KEY_F7:excavadora.giro_pala+=1;
-        if (excavadora.giro_pala > excavadora.giro_pala_max)
-            excavadora.giro_pala = excavadora.giro_pala_max;break;
-   case GLUT_KEY_F8:excavadora.giro_pala-=1;
-        if (excavadora.giro_pala < excavadora.giro_pala_min)
-            excavadora.giro_pala = excavadora.giro_pala_min;break;
-	}
+   case GLUT_KEY_F5:coche.giro_aleron_trasero-=0.5;
+        if(coche.giro_aleron_trasero < coche.giro_aleron_trasero_max)
+            coche.giro_aleron_trasero = coche.giro_aleron_trasero_max;break;
+   case GLUT_KEY_F6:coche.giro_aleron_trasero+=0.5;
+        if(coche.giro_aleron_trasero > coche.giro_aleron_min)
+            coche.giro_aleron_trasero = coche.giro_aleron_min;break;
+   case GLUT_KEY_F7:coche.giro_aleron_delantero-=0.25;
+        // if(coche.giro_aleron_delantero > coche.giro_aleron_min)
+        //     coche.giro_aleron_delantero = coche.giro_aleron_min;break;
+        if(coche.giro_aleron_delantero < coche.giro_aleron_delantero_max)
+            coche.giro_aleron_delantero = coche.giro_aleron_delantero_max;break;
+   case GLUT_KEY_F8:coche.giro_aleron_delantero+=0.25;
+        // if(coche.giro_aleron_trasero < coche.giro_aleron_delantero_max)
+        //     coche.giro_aleron_trasero = coche.giro_aleron_delantero_max;break;
+        if(coche.giro_aleron_delantero > coche.giro_aleron_min)
+            coche.giro_aleron_delantero = coche.giro_aleron_min;break;
+}
 glutPostRedisplay();
 }
 
@@ -367,9 +368,8 @@ cout << "Tecla R: Rotación" << endl;
 cout << "Tecla L: Cilindro" << endl;
 cout << "Tecla N: Cono" << endl;
 cout << "Tecla E: Esfera" << endl;
-cout << "Tecla A: Excavadora" << endl;
+cout << "Tecla A: Coche" << endl;
 cout << "Tecla X: Extrusión" << endl;
-cout << "Tecla M: Coche" << endl;
 
 cout << endl << endl;
 cout << "***Modos de visualización de los distintos objetos***" << endl;
@@ -384,6 +384,10 @@ cout << "Tecla F1: Rotación de las ruedas del coche hacia adelante" << endl;
 cout << "Tecla F2: Rotación de las ruedas del coche hacia atrás" << endl;
 cout << "Tecla F3: Giro de las ruedas del coche a la izquierda" << endl;
 cout << "Tecla F4: Giro de las ruedas del coche a la derecha" << endl;
+cout << "Tecla F5: Abertura del alerón trasero" << endl;
+cout << "Tecla F6: Cierre del alerón trasero" << endl;
+cout << "Tecla F7: Abertura del alerón delantero" << endl;
+cout << "Tecla F8: Cierre del alerón delantero" << endl;
     
 
 //ply = new _objeto_ply(argv[1]);
