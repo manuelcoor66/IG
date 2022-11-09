@@ -236,13 +236,9 @@ switch (Tecla1){
         if(coche.giro_aleron_trasero > coche.giro_aleron_min)
             coche.giro_aleron_trasero = coche.giro_aleron_min;break;
    case GLUT_KEY_F7:coche.giro_aleron_delantero-=0.25;
-        // if(coche.giro_aleron_delantero > coche.giro_aleron_min)
-        //     coche.giro_aleron_delantero = coche.giro_aleron_min;break;
         if(coche.giro_aleron_delantero < coche.giro_aleron_delantero_max)
             coche.giro_aleron_delantero = coche.giro_aleron_delantero_max;break;
    case GLUT_KEY_F8:coche.giro_aleron_delantero+=0.25;
-        // if(coche.giro_aleron_trasero < coche.giro_aleron_delantero_max)
-        //     coche.giro_aleron_trasero = coche.giro_aleron_delantero_max;break;
         if(coche.giro_aleron_delantero > coche.giro_aleron_min)
             coche.giro_aleron_delantero = coche.giro_aleron_min;break;
 }

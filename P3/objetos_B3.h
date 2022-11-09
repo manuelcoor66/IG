@@ -107,6 +107,14 @@ public:
 void  parametros(vector<_vertex3f> perfil, int num, int tipo, int tapa_in, int tapa_su);
 };
 
+class _prueba: public _triangulos3D
+{
+public:
+       _prueba();
+       
+void  parametros(vector<_vertex3f> perfil, int num, int tipo, int tapa_in, int tapa_su);
+};
+
  
 //************************************************************************
 // cilindro
