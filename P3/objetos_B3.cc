@@ -845,7 +845,6 @@ void _aleron_delantero_sup::draw(_modo modo, float r, float g, float b, float gr
 {
 glPushMatrix();
 glScalef(ancho, alto, fondo);
-glTranslatef(0, 0, -0.5);  
 cubo.draw(modo, 0, 255, 0, grosor);
 glPopMatrix();
 };
@@ -937,7 +936,7 @@ apendice.draw(modo, r, g, b, grosor);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(-estructura.ancho/2 -aleron_delantero_sup.ancho/8 + 0.13 - aleron_delantero_sup.ancho*0.7, -estructura.alto/2, 0);
+glTranslatef(-estructura.ancho/2 -aleron_delantero_sup.ancho/8 + 0.13 - aleron_delantero_sup.ancho*0.7 -0.08, -estructura.alto/2 , 0);
 glRotatef(90, 0, 1, 0);
 glScalef(2.2, 1, 1);
 aleron_delantero_sup.draw(modo, r, g, b, grosor);
