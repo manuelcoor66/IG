@@ -2,16 +2,36 @@
 // Práctica 2 
 //**************************************************************************
 
-#include <vector>
+#if defined(__APPLE__) // Para que funcione en apple
+#define GL_SILENCE_DEPRECATION
+#include <GLUT/glut.h>
+#else
 #include <GL/gl.h>
+#endif
+
+#include <vector>
 #include "vertex.h"
 #include <stdlib.h>
 
-// Prueba
-
 
 const float AXIS_SIZE=5000;
-typedef enum{POINTS,EDGES,SOLID,SOLID_COLORS} _modo;
+typedef enum
+{
+       POINTS,
+       EDGES,
+       SOLID,
+       SOLID_COLORS,
+       SOLID_FLAT,
+       SOLID_SMOOTH
+} _modo;
+
+// define a materials struct and declare it as a global variable
+struct _material{
+       GLfloat ambiente[4];
+       GLfloat difusa[4];
+       GLfloat especular[4];
+       GLfloat brillo[1];
+};
 
 //*************************************************************************
 // clase punto
@@ -20,8 +40,6 @@ typedef enum{POINTS,EDGES,SOLID,SOLID_COLORS} _modo;
 class _puntos3D
 {
 public:
-
-  
 	_puntos3D();
 void 	draw_puntos(float r, float g, float b, int grosor);
 
@@ -39,17 +57,37 @@ public:
 
 	_triangulos3D();
 void 	draw_aristas(float r, float g, float b, int grosor);
-void    draw_solido(float r, float g, float b);
+void   draw_solido(float r, float g, float b);
 void 	draw_solido_colores();
-void 	draw(_modo modo, float r, float g, float b, float grosor);
+void   draw_solido_plano(_material material);
+void   draw_solido_suave(_material material);
+void 	draw(_modo modo, float r, float g, float b, float grosor, _material material);
 
 /* asignación de colores */
 void 	colors_random();
 void 	colors_chess(float r1, float g1, float b1, float r2, float g2, float b2);
 
+/* deberiamos añadir de la formula 4.2 de la pg 19 la última sumatoria (entiendo poco)
+si queremos cambiar que no sea luz blanca, habría que pasarlo como parámetro */
+void   colors_flat(float r, float g, float b, float p_lx, float p_ly, float p_lz); 
+void   colors_smooth(float r, float g, float b, float p_lx, float p_ly, float p_lz);
+
+/* calcular normales */
+void   calcular_normales_caras();
+void   calcular_normales_vertices();
 
 vector<_vertex3i> caras;
 vector<_vertex3f> colores_caras;
+
+vector<_vertex3f> normales_caras;
+vector<_vertex3f> normales_vertices;
+
+//material
+_vertex4f ambiente_difuso;
+_vertex4f especular;
+float brillo;
+
+
 };
 
 //*************************************************************************
@@ -64,7 +102,7 @@ class _cubo: public _triangulos3D
 {
 public:
 
-	_cubo(float tam=0.5);
+	_cubo(float tam=0.5, bool tapa_inf=true, bool tapa_sup=true);
 };
 
 
@@ -76,7 +114,7 @@ class _piramide: public _triangulos3D
 {
 public:
 
-	_piramide(float tam=0.5, float al=1.0);
+	_piramide(float tam=0.5, float al=1.0, bool tapa_inf=true, bool tapa_sup=true);
 };
 
 //*************************************************************************
@@ -104,15 +142,7 @@ class _rotacion: public _triangulos3D
 public:
        _rotacion();
        
-void  parametros(vector<_vertex3f> perfil, int num, int tipo, int tapa_in, int tapa_su);
-};
-
-class _prueba: public _triangulos3D
-{
-public:
-       _prueba();
-       
-void  parametros(vector<_vertex3f> perfil, int num, int tipo, int tapa_in, int tapa_su);
+void parametros(vector<_vertex3f> perfil, int num, int tipo, bool tapa_inf=true, bool tapa_sup=true);
 };
 
  
@@ -123,7 +153,7 @@ void  parametros(vector<_vertex3f> perfil, int num, int tipo, int tapa_in, int t
 class _cilindro: public _rotacion
 {
 public:
-       _cilindro(float radio=1.0, float altura=2.0, int num=12);
+       _cilindro(float radio=1.0, float altura=2.0, int num=12, bool tapa_inf=true, bool tapa_sup=true);
 };
 
 //************************************************************************
@@ -133,7 +163,7 @@ public:
 class _cono: public _rotacion
 {
 public:
-       _cono(float radio=1.0, float altura=2.0, int num=3);
+       _cono(float radio, float altura, int num, bool tapa_inf=true, bool tapa_sup=true);
 };
 
 //************************************************************************
@@ -143,7 +173,7 @@ public:
 class _esfera: public _rotacion
 {
 public:
-       _esfera(float radio, int num1, int num2);
+       _esfera(float radio=1, int num1=6, int num2=6, bool tapa_inf=true, bool tapa_sup=true);
 };
 
 
