@@ -851,7 +851,11 @@ void _rueda_delantera::draw(_modo modo, float r, float g, float b, float grosor)
 glPushMatrix();
 glRotatef(90,1,0,0);
 glScalef(radio, fondo/2.2, radio);
+<<<<<<< HEAD
 rueda.draw(modo, 0, 0, 0, grosor, plastico_rojo);
+=======
+rueda.draw(modo, r, g, b, grosor, plastico_rojo);
+>>>>>>> 60290fd4f08df24af28d54b729417c903d6353af
 glPopMatrix();
 };
 
@@ -869,7 +873,11 @@ void _rueda_trasera::draw(_modo modo, float r, float g, float b, float grosor)
 glPushMatrix();
 glRotatef(90,1,0,0);
 glScalef(radio*1.3, fondo/2.2, radio*1.3);
+<<<<<<< HEAD
 rueda.draw(modo, 0, 0, 0, grosor, plastico_rojo);
+=======
+rueda.draw(modo, r, g, b, grosor, plastico_rojo);
+>>>>>>> 60290fd4f08df24af28d54b729417c903d6353af
 glPopMatrix();
 };
 
@@ -899,7 +907,11 @@ void _aleron_trasero_base::draw(_modo modo, float r, float g, float b, float gro
 {
 glPushMatrix();
 glScalef(ancho, alto, fondo);
+<<<<<<< HEAD
 cubo.draw(modo, 0, 0, 1, grosor, plastico_rojo);
+=======
+cubo.draw(modo, r, g, b, grosor, plastico_rojo);
+>>>>>>> 60290fd4f08df24af28d54b729417c903d6353af
 glPopMatrix();
 };
 
@@ -915,7 +927,11 @@ void _aleron_trasero_sup::draw(_modo modo, float r, float g, float b, float gros
 glPushMatrix();
 glScalef(ancho, alto, fondo);
 glTranslatef(0, 0, -0.5);  
+<<<<<<< HEAD
 cubo.draw(modo, 0, 1, 0, grosor, plastico_rojo);
+=======
+cubo.draw(modo, r, g, b, grosor, plastico_rojo);
+>>>>>>> 60290fd4f08df24af28d54b729417c903d6353af
 glPopMatrix();
 };
 
@@ -930,7 +946,11 @@ void _apendice::draw(_modo modo, float r, float g, float b, float grosor)
 glPushMatrix();
 glRotatef(90,1,0,0);
 glScalef(0.2, 0.2, 0.2);
+<<<<<<< HEAD
 aleron.draw(modo, 0.4, 0, 0, grosor, plastico_rojo);
+=======
+aleron.draw(modo, r, g, b, grosor, plastico_rojo);
+>>>>>>> 60290fd4f08df24af28d54b729417c903d6353af
 glPopMatrix();
 };
 
@@ -945,7 +965,11 @@ void _aleron_delantero_base::draw(_modo modo, float r, float g, float b, float g
 {
 glPushMatrix();
 glScalef(0.25, 0.03, 0.15);
+<<<<<<< HEAD
 cubo.draw(modo, 0, 0.5, 0.5, grosor, plastico_rojo);
+=======
+cubo.draw(modo, r, g, b, grosor, plastico_rojo);
+>>>>>>> 60290fd4f08df24af28d54b729417c903d6353af
 glPopMatrix();
 };
 
@@ -960,7 +984,11 @@ void _aleron_delantero_sup::draw(_modo modo, float r, float g, float b, float gr
 {
 glPushMatrix();
 glScalef(0.45, 0.03, 0.15);
+<<<<<<< HEAD
 cubo.draw(modo, 1, 0, 0, grosor, plastico_rojo);
+=======
+cubo.draw(modo, r, g, b, grosor, plastico_rojo);
+>>>>>>> 60290fd4f08df24af28d54b729417c903d6353af
 glPopMatrix();
 };
 
@@ -1218,4 +1246,8 @@ glRotatef(90, 1, 0, 0);
 color=color_select[12];
 aleron_delantero_base_drch.draw(SELECT, color.r, color.g, color.b, 1);
 glPopMatrix();
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 60290fd4f08df24af28d54b729417c903d6353af
